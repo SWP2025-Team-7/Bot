@@ -9,11 +9,6 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import BotCommand
 from handlers import router
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
-
 async def main():
     bot = Bot(os.getenv('BOT_TOKEN'), default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     dp = Dispatcher(storage=MemoryStorage())

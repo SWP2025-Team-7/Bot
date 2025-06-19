@@ -3,7 +3,6 @@ import logging
 import json
 import requests as re
 
-
 def register_user(user_id, alias):
     logging.info(f"Registring user ID:{user_id}, Alias:{alias}")
     try :
