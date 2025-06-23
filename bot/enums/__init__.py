@@ -1,2 +1,4 @@
 from .callbacks import CallBacks
-from .texts import ButtonsText, MessagesText
+from .messages import Messages
+from .languages import Languages
+from .buttons import Buttons
