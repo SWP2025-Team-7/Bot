@@ -1,4 +1,4 @@
-## Table of contents
+## Table of Contents
 - [Quick Start](#quick-start)
 - [File Architecture](#file-architecture)
 
