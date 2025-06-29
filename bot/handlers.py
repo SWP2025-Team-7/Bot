@@ -7,10 +7,10 @@ from aiogram.filters import Command
 from aiogram.types import CallbackQuery, Message, ContentType
 from aiogram.fsm.context import FSMContext
 
-import keyboards
-import enums
-import bot_api
-import states
+import bot.keyboards
+import bot.enums
+import bot.bot_api
+import bot.states
 
 from texts import get_message, get_button_text
 from enums import Languages, Messages, CallBacks
