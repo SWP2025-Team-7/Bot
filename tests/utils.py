@@ -1,4 +1,4 @@
-from aiogram.types import User
+from aiogram.types import User, Chat
 
 TEST_USER = User(id=123, is_bot=False, 
                  first_name='Marko', 
