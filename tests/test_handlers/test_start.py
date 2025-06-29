@@ -7,11 +7,11 @@ from bot.handlers import start_handler
 from tests.utils import TEST_USER, TEST_USER_CHAT
 
 @pytest.mark.asyncio
-async def test_start_handler(storage, bot):
+async def test_start_handler(memory_storage, bot):
     message = AsyncMock()
     state=FSMContext(
         bot=bot,
-        storage=storage,
+        storage=memory_storage,
         key=StorageKey(
             bot_id=bot.id,
             user_id=TEST_USER.id,
