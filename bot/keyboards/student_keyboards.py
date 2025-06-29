@@ -7,8 +7,8 @@ from aiogram.types import (
     WebAppInfo,
 )
 
-from enums import CallBacks
-from texts import get_button_text, Languages, Buttons
+from bot.enums import CallBacks
+from bot.texts import get_button_text, Languages, Buttons
 
 def get_confirmation_keyboard(language: Languages = Languages.ENG) -> InlineKeyboardMarkup:
     data_confirmation_kb = [
