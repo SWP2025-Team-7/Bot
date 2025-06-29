@@ -1,4 +1,4 @@
-from enums import Messages, Languages, Buttons
+from bot.enums import Messages, Languages, Buttons
 import logging 
 
 russian_pack = {
