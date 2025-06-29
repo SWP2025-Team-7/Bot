@@ -16,7 +16,7 @@ router = Router()
 @router.message(Command("start"))
 async def start_handler(msg: Message, state: FSMContext):
     logging.info(f"User ID: {msg.from_user.id}, started the bot")
-
+    await state.clear()
     ans = bot_api.register_user(user_id=msg.from_user.id, alias=msg.from_user.username)
     if ans:
         await msg.answer(get_message(message=Messages.LANGUAGE, language=(await state.get_data()).get("language")),
