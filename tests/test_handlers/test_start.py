@@ -13,7 +13,6 @@ async def test_start_handler(memory_storage, bot):
         bot=bot,
         storage=memory_storage,
         key=StorageKey(
-            bot_id=bot.id,
             user_id=TEST_USER.id,
             chat_id=TEST_USER_CHAT.id,
         )
