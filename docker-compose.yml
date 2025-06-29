@@ -1,0 +1,16 @@
+networks:
+  bot:
+    external: false
+
+services:
+  bot:
+    container_name: bot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks:
+      - bot
+    env_file:
+       - .env
+    command: python bot/main.py
