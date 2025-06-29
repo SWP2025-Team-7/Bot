@@ -25,6 +25,7 @@ jobs:
         run: |
           python -m pip install pytest
           python -m pip install pytest-asyncio
+          python -m pip install pytest_asyncio
           python -m pip install aiogram
 
       - name: Run tests
