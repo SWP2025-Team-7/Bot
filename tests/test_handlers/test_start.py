@@ -2,7 +2,7 @@ import pytest
 
 from unittest.mock import AsyncMock
 from aiogram.fsm.context import FSMContext
-from aiogram.dispatcher.fsm.storage.base import StorageKey
+from aiogram.fsm.storage.base import StorageKey
 from bot.handlers import start_handler
 from tests.utils import TEST_USER, TEST_USER_CHAT
 
