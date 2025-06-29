@@ -4,10 +4,6 @@ from pathlib import Path
 
 import pytest
 from _pytest.config import UsageError
-from pymongo.errors import InvalidURI, PyMongoError
-from pymongo.uri_parser import parse_uri as parse_mongo_url
-from redis.asyncio.connection import parse_url as parse_redis_url
-from redis.exceptions import ConnectionError
 
 from aiogram import Dispatcher
 from aiogram.fsm.storage.base import StorageKey
@@ -16,9 +12,7 @@ from aiogram.fsm.storage.memory import (
     MemoryStorage,
     SimpleEventIsolation,
 )
-from aiogram.fsm.storage.mongo import MongoStorage
-from aiogram.fsm.storage.redis import RedisStorage
-from tests.mocked_bot import MockedBot
+from mocked_bot import MockedBot
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -44,63 +38,6 @@ def pytest_configure(config):
         asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
 
 
-@pytest.fixture()
-def redis_server(request):
-    redis_uri = request.config.getoption("--redis")
-    if redis_uri is None:
-        pytest.skip(SKIP_MESSAGE_PATTERN.format(db="redis"))
-    else:
-        return redis_uri
-
-
-@pytest.fixture()
-async def redis_storage(redis_server):
-    try:
-        parse_redis_url(redis_server)
-    except ValueError as e:
-        raise UsageError(INVALID_URI_PATTERN.format(db="redis", uri=redis_server, err=e))
-    storage = RedisStorage.from_url(redis_server)
-    try:
-        await storage.redis.info()
-    except ConnectionError as e:
-        pytest.fail(str(e))
-    try:
-        yield storage
-    finally:
-        conn = await storage.redis
-        await conn.flushdb()
-        await storage.close()
-
-
-@pytest.fixture()
-def mongo_server(request):
-    mongo_uri = request.config.getoption("--mongo")
-    if mongo_uri is None:
-        pytest.skip(SKIP_MESSAGE_PATTERN.format(db="mongo"))
-    else:
-        return mongo_uri
-
-
-@pytest.fixture()
-async def mongo_storage(mongo_server):
-    try:
-        parse_mongo_url(mongo_server)
-    except InvalidURI as e:
-        raise UsageError(INVALID_URI_PATTERN.format(db="mongo", uri=mongo_server, err=e))
-    storage = MongoStorage.from_url(
-        url=mongo_server,
-        connection_kwargs={"serverSelectionTimeoutMS": 2000},
-    )
-    try:
-        await storage._client.server_info()
-    except PyMongoError as e:
-        pytest.fail(str(e))
-    else:
-        yield storage
-        await storage._client.drop_database(storage._database)
-    finally:
-        await storage.close()
-
 
 @pytest.fixture()
 async def memory_storage():
@@ -109,12 +46,6 @@ async def memory_storage():
         yield storage
     finally:
         await storage.close()
-
-
-@pytest.fixture()
-async def redis_isolation(redis_storage):
-    isolation = redis_storage.create_isolation()
-    return isolation
 
 
 @pytest.fixture()
