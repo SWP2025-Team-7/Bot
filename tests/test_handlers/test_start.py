@@ -9,7 +9,7 @@ from tests.utils import TEST_USER, TEST_USER_CHAT
 @pytest.mark.asyncio
 async def test_start_handler(memory_storage, bot):
     message = AsyncMock()
-    state=FSMContext(
+    state = FSMContext(
         storage=memory_storage,
         key=StorageKey(
             bot_id=bot.id,
@@ -18,5 +18,4 @@ async def test_start_handler(memory_storage, bot):
         )
     )
     await start_handler(msg=message, state=state)
-    assert state.get_state() is None
-    
+    assert await state.get_state() is None

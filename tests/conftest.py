@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 
 import pytest
+import pytest_asyncio
 from _pytest.config import UsageError
 
 from aiogram import Dispatcher
@@ -39,7 +40,7 @@ def pytest_configure(config):
 
 
 
-@pytest.fixture()
+@pytest_asyncio.fixture()
 async def memory_storage():
     storage = MemoryStorage()
     try:
@@ -48,7 +49,7 @@ async def memory_storage():
         await storage.close()
 
 
-@pytest.fixture()
+@pytest_asyncio.fixture()
 async def lock_isolation():
     isolation = SimpleEventIsolation()
     try:
@@ -57,7 +58,7 @@ async def lock_isolation():
         await isolation.close()
 
 
-@pytest.fixture()
+@pytest_asyncio.fixture()
 async def disabled_isolation():
     isolation = DisabledEventIsolation()
     try:
@@ -66,17 +67,17 @@ async def disabled_isolation():
         await isolation.close()
 
 
-@pytest.fixture()
+@pytest_asyncio.fixture()
 def bot():
     return MockedBot()
 
 
-@pytest.fixture(name="storage_key")
+@pytest_asyncio.fixture(name="storage_key")
 def create_storage_key(bot: MockedBot):
     return StorageKey(chat_id=CHAT_ID, user_id=USER_ID, bot_id=bot.id)
 
 
-@pytest.fixture()
+@pytest_asyncio.fixture()
 async def dispatcher():
     dp = Dispatcher()
     await dp.emit_startup()
