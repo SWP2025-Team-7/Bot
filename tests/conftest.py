@@ -12,7 +12,7 @@ from aiogram.fsm.storage.memory import (
     MemoryStorage,
     SimpleEventIsolation,
 )
-from tests.mocked_bot import MockedBot
+from mocked_bot import MockedBot
 
 DATA_DIR = Path(__file__).parent / "data"
 
