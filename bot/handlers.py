@@ -23,25 +23,25 @@ async def start_handler(msg: Message, state: FSMContext):
         await msg.answer(text=get_message(message=Messages.INSTRUCTIONS, language=(await state.get_data()).get("language")))
     else:
         await state.set_state(states.StudentStates.start)
-        await msg.answer(get_message(message=Messages.ERROR))
+        await msg.answer(text=get_message(message=Messages.ERROR))
 
 @router.message(Command("cancel"))
 async def cancel_handler(msg: Message, state:FSMContext):
     logging.info(f"User: {msg.from_user.id}: canceled activity. Previous state: {(await state.get_state())}")
     await state.set_state(states.StudentStates.start)
     await msg.answer(text=get_message(message=Messages.CANCEL, language=(await state.get_data()).get("language")))
-    await msg.answer(get_message(message=Messages.INSTRUCTIONS, language=(await state.get_data()).get("language")))
+    await msg.answer(text=get_message(message=Messages.INSTRUCTIONS, language=(await state.get_data()).get("language")))
 
 @router.message(Command("restart"))
 async def restart_handler(msg: Message, state: FSMContext):
     await state.clear()
     await state.set_state(states.StudentStates.start)
-    await msg.answer(get_message(message=Messages.INSTRUCTIONS, language=(await state.get_data()).get("language")))
+    await msg.answer(text=get_message(message=Messages.INSTRUCTIONS, language=(await state.get_data()).get("language")))
 
 @router.message(Command("language"), states.StudentStates.start)
 async def language_handler(msg: Message, state: FSMContext):
     logging.info(f"User: {msg.from_user.id} changing language")
-    await msg.answer(get_message(message=Messages.LANGUAGE, language=(await state.get_data()).get("language")),
+    await msg.answer(text=get_message(message=Messages.LANGUAGE, language=(await state.get_data()).get("language")),
                     reply_markup=keyboards.get_language_keyboard(language=(await state.get_data()).get("language")))
     await state.set_state(states.StudentStates.language)
 
