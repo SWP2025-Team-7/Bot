@@ -27,5 +27,5 @@ async def test_language_handler(memory_storage, bot):
     )
     await language_handler(msg=message, state=state)
     assert await state.get_state() == StudentStates.language
-    message.answer.assert_called_with(get_message(message=Messages.LANGUAGE, language=(await state.get_data()).get("language")), 
+    message.answer.assert_called_with(text=get_message(message=Messages.LANGUAGE, language=(await state.get_data()).get("language")), 
                                       reply_markup=keyboards.get_language_keyboard(language=(await state.get_data()).get("language")))
