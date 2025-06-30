@@ -36,7 +36,7 @@ async def cancel_handler(msg: Message, state:FSMContext):
 async def restart_handler(msg: Message, state: FSMContext):
     await state.clear()
     await state.set_state(states.StudentStates.start)
-    await msg.answer(text=get_message(message=Messages.INSTRUCTIONS, language=(await state.get_data()).get("language")))
+    await msg.answer(get_message(message=Messages.INSTRUCTIONS, language=(await state.get_data()).get("language")))
 
 @router.message(Command("language"), states.StudentStates.start)
 async def language_handler(msg: Message, state: FSMContext):
