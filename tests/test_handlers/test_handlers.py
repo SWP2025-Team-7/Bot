@@ -1,6 +1,6 @@
 import pytest
 import sys
-
+sys.path.insert(0,'.')
 from unittest.mock import AsyncMock
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.base import StorageKey
@@ -11,7 +11,6 @@ from bot.states import StudentStates
 from bot.texts import get_message
 from bot.enums import Messages
 
-sys.path.insert(0,'.')
 
 @pytest.mark.asyncio
 async def test_start_handler(memory_storage, bot):
