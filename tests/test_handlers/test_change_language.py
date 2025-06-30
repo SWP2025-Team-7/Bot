@@ -25,4 +25,4 @@ async def test_change_language(memory_storage, bot):
     )
     await change_language(clbck=call, state=state)
     assert await state.get_state() == StudentStates.start
-    call.message.answer.assert_called_with(get_message(message=Messages.LANGUAGE_CHANGED, language=(await state.get_data()).get("language")))
+    call.message.answer.assert_called_with(f'{get_message(message=Messages.LANGUAGE_CHANGED, language=(await state.get_data()).get("language"))}')
