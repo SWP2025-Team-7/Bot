@@ -67,12 +67,12 @@ async def disabled_isolation():
         await isolation.close()
 
 
-@pytest_asyncio.fixture()
+@pytest.fixture()
 def bot():
     return MockedBot()
 
 
-@pytest_asyncio.fixture(name="storage_key")
+@pytest.fixture(name="storage_key")
 def create_storage_key(bot: MockedBot):
     return StorageKey(chat_id=CHAT_ID, user_id=USER_ID, bot_id=bot.id)
 
