@@ -3,7 +3,7 @@ import pytest
 from unittest.mock import AsyncMock
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.base import StorageKey
-from handlers import start_handler, restart_handler
+from bot.handlers import start_handler, restart_handler
 from tests.utils import TEST_USER, TEST_USER_CHAT
 
 from bot.states import StudentStates
