@@ -2,12 +2,12 @@ import pytest
 from unittest.mock import AsyncMock
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.base import StorageKey
-from bot.handlers import start_handler, restart_handler
-from tests.utils import TEST_USER, TEST_USER_CHAT
+from Bot.bot.handlers import start_handler, restart_handler
+from Bot.tests.utils import TEST_USER, TEST_USER_CHAT
 
-from bot.states import StudentStates
-from bot.texts import get_message
-from bot.enums import Messages
+from Bot.bot.states import StudentStates
+from Bot.bot.texts import get_message
+from Bot.bot.enums import Messages
 
 
 @pytest.mark.asyncio
