@@ -1,6 +1,8 @@
 import pytest
 from unittest.mock import AsyncMock
+import datetime
 
+from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.base import StorageKey
 
@@ -14,7 +16,13 @@ from bot.handlers import cancel_handler
 
 @pytest.mark.asyncio
 async def test_cancel_handler(memory_storage, bot):
-    message = AsyncMock()
+    message = Message(
+        message_id=42,
+        date=datetime.datetime.now(),
+        text="/cancel",
+        chat=TEST_USER_CHAT,
+        from_user=TEST_USER
+    )
     state = FSMContext(
         storage=memory_storage,
         key=StorageKey(
