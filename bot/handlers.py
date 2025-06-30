@@ -7,9 +7,9 @@ from aiogram.filters import Command, or_f
 from aiogram.types import CallbackQuery, Message, ContentType
 from aiogram.fsm.context import FSMContext
 
-import keyboards, states, enums, bot_api
-from texts import get_message, get_button_text, get_data_message
-from enums import Languages, Messages, CallBacks
+from bot import keyboards, states, enums, bot_api
+from bot.texts import get_message, get_button_text, get_data_message
+from bot.enums import Languages, Messages, CallBacks
 
 router = Router()
 
