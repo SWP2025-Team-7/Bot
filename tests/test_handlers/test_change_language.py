@@ -13,7 +13,7 @@ from bot.texts import get_message
 from bot.handlers import change_language
 
 @pytest.mark.asyncio
-async def test_cancel_handler(memory_storage, bot):
+async def test_change_language(memory_storage, bot):
     call = AsyncMock()
     state = FSMContext(
         storage=memory_storage,
