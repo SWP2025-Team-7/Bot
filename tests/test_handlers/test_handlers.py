@@ -1,4 +1,5 @@
 import pytest
+import sys
 
 from unittest.mock import AsyncMock
 from aiogram.fsm.context import FSMContext
@@ -9,6 +10,8 @@ from tests.utils import TEST_USER, TEST_USER_CHAT
 from bot.states import StudentStates
 from bot.texts import get_message
 from bot.enums import Messages
+
+sys.path.insert(0,'.')
 
 @pytest.mark.asyncio
 async def test_start_handler(memory_storage, bot):
