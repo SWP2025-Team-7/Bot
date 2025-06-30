@@ -14,9 +14,10 @@ async def main():
     dp = Dispatcher(storage=MemoryStorage())
     await bot.set_my_commands(
         [
-        BotCommand(command="send", description="send document"),
-        BotCommand(command="login", description="login with university SSO"),
-        BotCommand(command="cancel", description="cancel"),
+        BotCommand(command="send", description="to send document"),
+        BotCommand(command="login", description="to login with university SSO"),
+        BotCommand(command="cancel", description="to cancel current activity"),
+        BotCommand(command="restart", description="to restart bot")
         ]
     )
     dp.include_router(router)

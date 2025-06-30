@@ -8,3 +8,4 @@ class Messages(Enum):
     CANCEL = "cancel"
     INSTRUCTIONS = "instructions"
     SEND = "send"
+    DATA = "data"

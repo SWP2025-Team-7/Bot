@@ -1,4 +1,4 @@
-from bot.enums import Messages, Languages, Buttons
+from enums import Messages, Languages, Buttons
 import logging 
 
 russian_pack = {
@@ -7,7 +7,7 @@ russian_pack = {
     Messages.ERROR: "Извините(",
     Messages.LOGIN: "Innopolis SSO",
     Messages.CANCEL: "Действие прервано",
-    Messages.INSTRUCTIONS: "/login чтобы авторизоваться с помощью университетского SSO\n/send чтобы отправить документ\n/language чтобы изменить язык\n/cansel чтобы прервать действие",
+    Messages.INSTRUCTIONS: "/restart чтобы перезапустить бота\n/login чтобы авторизоваться с помощью университетского SSO\n/send чтобы отправить документ\n/language чтобы изменить язык\n/cansel чтобы прервать действие",
     Messages.SEND: "Отправьте документ"
 }
 
@@ -17,7 +17,7 @@ english_pack = {
     Messages.ERROR: "Sorry(",
     Messages.LOGIN: "Innopolis SSO",
     Messages.CANCEL: "Activity interrupt",
-    Messages.INSTRUCTIONS: "/login to login with university sso\n/send to send document\n/language to change language\n/cancel to interrupt activity",
+    Messages.INSTRUCTIONS: "/restart to restart bot\n/login to login with university sso\n/send to send document\n/language to change language\n/cancel to interrupt activity",
     Messages.SEND: "Send document"
 }
 
@@ -58,3 +58,12 @@ def get_button_text(button: Buttons, language: Languages = Languages.ENG):
             return buttons_english_pack.get(button)
         case _:
             return buttons_english_pack.get(button)
+        
+def get_data_message(data, language: Languages = Languages.ENG):
+    match language:
+        case Languages.RU:
+            return "Извлечение данных недоступно в данный момент"
+        case Languages.ENG:
+            return "Data extraction is not available now"
+        case _:
+            return "Data extraction is not available now"

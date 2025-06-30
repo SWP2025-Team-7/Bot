@@ -31,4 +31,4 @@ def get_login_keyboard(language: Languages = Languages.ENG) -> InlineKeyboardMar
         [InlineKeyboardButton(text=get_button_text(language=language, button=Buttons.LOGIN), web_app=WebAppInfo(url="https://innopolis.university/"))]
     ]
 
-    return InlineKeyboardMarkup(inline_keyboard=login_kb)
+    return InlineKeyboardMarkup(inline_keyboard=login_kb) 
