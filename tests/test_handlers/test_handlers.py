@@ -6,9 +6,9 @@ from aiogram.fsm.storage.base import StorageKey
 from handlers import start_handler, restart_handler
 from tests.utils import TEST_USER, TEST_USER_CHAT
 
-from states import StudentStates
-from texts import get_message
-from enums import Messages
+from bot.states import StudentStates
+from bot.texts import get_message
+from bot.enums import Messages
 
 @pytest.mark.asyncio
 async def test_start_handler(memory_storage, bot):
