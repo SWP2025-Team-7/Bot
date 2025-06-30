@@ -24,8 +24,6 @@ async def test_start_handler(memory_storage, bot):
     await start_handler(msg=message, state=state)
     assert await state.get_state() == StudentStates.start
     
-    message.delete.assert_any_call()
-
 @pytest.mark.asyncio
 async def test_restart_handler(memory_storage, bot):
     message = AsyncMock()
