@@ -22,7 +22,7 @@ async def test_start_handler(memory_storage, bot):
         )
     )
     await start_handler(msg=message, state=state)
-    assert await state.get_state() is None
+    assert await state.get_state() == StudentStates.start
     
     message.delete.assert_any_call()
 
@@ -38,5 +38,5 @@ async def test_restart_handler(memory_storage, bot):
         )
     )
     await restart_handler(msg=message, state=state)
-    assert await state.get_state() is StudentStates.start
+    assert await state.get_state() == StudentStates.start
     message.answer.asser_called_with(get_message(message=Messages.INSTRUCTIONS, language=(await state.get_data()).get("language")))
