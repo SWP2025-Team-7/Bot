@@ -1,2 +1,2 @@
 import sys
-sys.path.append('/bot')
+sys.path.append('./bot')
