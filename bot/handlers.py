@@ -30,7 +30,7 @@ async def cancel_handler(msg: Message, state:FSMContext):
     logging.info(f"User: {msg.from_user.id}: canceled activity. Previous state: {(await state.get_state())}")
     await state.set_state(states.StudentStates.start)
     await msg.answer(text=get_message(message=Messages.CANCEL, language=(await state.get_data()).get("language")))
-    await msg.answer(text=get_message(message=Messages.INSTRUCTIONS, language=(await state.get_data()).get("language")))
+    await msg.answer(get_message(message=Messages.INSTRUCTIONS, language=(await state.get_data()).get("language")))
 
 @router.message(Command("restart"))
 async def restart_handler(msg: Message, state: FSMContext):
