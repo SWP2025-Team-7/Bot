@@ -13,4 +13,4 @@ services:
       - bot
     env_file:
        - .env
-    command: python bot/main.py
+    command: python -m bot.main
