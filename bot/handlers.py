@@ -82,8 +82,7 @@ async def get_file(msg: Message, state: FSMContext):
             logging.info(f"Received the document from {msg.from_user.id}")
             file_id = msg.document.file_id
             file = await msg.bot.get_file(file_id)
-            file_in_bytes = (await msg.bot.download_file(file.file_path)).read()
-            ans = bot_api.send_document(user_id=msg.from_user.id, file_in_bytes=file_in_bytes)
+            ans = bot_api.send_document(user_id=msg.from_user.id, file_path=file.file_path)
             if ans:
                 await msg.answer(text=get_data_message(ans, language=(await state.get_data()).get("language")))
             else:

@@ -1,6 +1,6 @@
 networks:
   bot:
-    external: false
+    external: true
 
 services:
   bot:
