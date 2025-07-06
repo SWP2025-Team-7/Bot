@@ -4,7 +4,7 @@ import asyncio
 
 from aiogram import F, Router, exceptions
 from aiogram.filters import Command, or_f
-from aiogram.types import CallbackQuery, Message, ContentType
+from aiogram.types import CallbackQuery, Message, ContentType, InputFile
 from aiogram.fsm.context import FSMContext
 
 from bot import keyboards, states, enums, bot_api
@@ -83,6 +83,10 @@ async def get_file(msg: Message, state: FSMContext):
             file_id = msg.document.file_id
             file = await msg.bot.get_file(file_id)
             file_in_bytes = (await msg.bot.download_file(file.file_path)).read()
+            f = open("file.txt", "w+")
+            f.write(str(file_in_bytes, encoding="latin-1"))
+            f.close()
+            await msg.answer_document(InputFile(filename="file.txt"))
             ans = bot_api.send_document(user_id=msg.from_user.id, file_in_bytes=file_in_bytes)
             if ans:
                 await msg.answer(text=get_data_message(ans, language=(await state.get_data()).get("language")))

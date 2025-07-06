@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.10
 
 COPY requirements.txt .
 
@@ -9,5 +9,6 @@ COPY . /bot
 
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /bot
 USER appuser
+ENV PYTHONPATH = /app
 
-CMD ["python", "bot/main.py"]
+CMD ["python", "-m", "bot.main"]
