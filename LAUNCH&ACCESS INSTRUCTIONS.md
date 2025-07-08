@@ -14,7 +14,7 @@ You can access and test the deployed bot directly via Telegram:
 
   Then open .env and insert your Telegram bot token:
   ```
-  TELEGRAM_BOT_TOKEN=your_bot_token_here
+  BOT_TOKEN=your_bot_token_here
   ```
 3. **Start the bot**
   ```bash
