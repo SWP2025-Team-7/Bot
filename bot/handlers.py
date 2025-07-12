@@ -17,8 +17,9 @@ router = Router()
 async def start_handler(msg: Message, state: FSMContext):
     logging.info(f"User ID: {msg.from_user.id}, started the bot")
     await state.clear()
+    await state.update_data(language=Languages.ENG)
     ans = bot_api.register_user(user_id=msg.from_user.id, username=msg.from_user.username)
-    if not ans:
+    if ans:
         await state.set_state(states.StudentStates.start)
         await msg.answer(text=get_message(message=Messages.INSTRUCTIONS, language=(await state.get_data()).get("language")))
     else:
@@ -82,9 +83,9 @@ async def get_file(msg: Message, state: FSMContext):
             logging.info(f"Received the document from {msg.from_user.id}")
             file_id = msg.document.file_id
             file = await msg.bot.get_file(file_id)
-            ans = bot_api.send_document(user_id=msg.from_user.id, file_path=file.file_path)
-            if ans:
-                await msg.answer(text=get_data_message(ans, language=(await state.get_data()).get("language")))
+            status_code, data_json = bot_api.send_document(user_id=msg.from_user.id, file_path=file.file_path)
+            if status_code == 200:
+                await msg.answer(text=get_data_message(data=data_json['output'], language=(await state.get_data()).get("language")))
             else:
                 await state.set_state(states.StudentStates.start)
                 await msg.answer(text=get_message(message=Messages.ERROR, language=(await state.get_data()).get("language")))

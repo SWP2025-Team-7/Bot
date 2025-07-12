@@ -60,10 +60,33 @@ def get_button_text(button: Buttons, language: Languages = Languages.ENG):
             return buttons_english_pack.get(button)
         
 def get_data_message(data, language: Languages = Languages.ENG):
+
     match language:
         case Languages.RU:
-            return "Извлечение данных недоступно в данный момент"
+            message = f"""
+Полное Имя: {data['fullName']}
+Позиция: {data['position']}
+Оклад: {data['salary']}
+Компания: {data['company']}
+
+Достоверность: {data['authenticity']} {data['authenticityConfidence']}
+"""
         case Languages.ENG:
-            return "Data extraction is not available now"
+            message = f"""
+Full Name: {data['fullName']}
+Position: {data['position']}
+Salary: {data['salary']}
+Company: {data['company']}
+
+Atheticity: {data['authenticity']} {data['authenticityConfidence']}
+"""
         case _:
-            return "Data extraction is not available now"
+            message = f"""
+Full Name: {data['fullName']}
+Position: {data['position']}
+Salary: {data['salary']}
+Company: {data['company']}
+
+Atheticity: {data['authenticity']} {data['authenticityConfidence']}
+"""
+    return message
