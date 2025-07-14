@@ -15,10 +15,12 @@ english_pack = {
     Messages.LANGUAGE: "Choose language:",
     Messages.LANGUAGE_CHANGED: "Language changed to English",
     Messages.ERROR: "Sorry(",
-    Messages.LOGIN: "Innopolis SSO",
+    Messages.LOGIN: "Logged in",
     Messages.CANCEL: "Activity interrupt",
     Messages.INSTRUCTIONS: "/restart to restart bot\n/login to login with university sso\n/send to send document\n/language to change language\n/cancel to interrupt activity",
-    Messages.SEND: "Send document"
+    Messages.SEND: "Send document",
+    Messages.LOGIN_INSTRUCTIONS: "Login with SSO is not available now",
+    Messages.THANKS: "Thanks"
 }
 
 buttons_russian_pack = {
@@ -90,3 +92,8 @@ Company: {data['company']}
 Atheticity: {data['authenticity']} {data['authenticityConfidence']}
 """
     return message
+
+def get_bot_description():
+    return """
+    This bot helps you to upload your internship documents.
+    """

@@ -8,7 +8,7 @@ from tests.utils import TEST_USER, TEST_USER_CHAT
 
 from bot.states import StudentStates
 
-from bot.handlers import start_handler
+from bot.handlers import start_handlers
 
 @pytest.mark.asyncio
 async def test_start_handler(memory_storage, bot):
@@ -21,5 +21,5 @@ async def test_start_handler(memory_storage, bot):
             chat_id=TEST_USER_CHAT.id,
         )
     )
-    await start_handler(msg=message, state=state)
+    await start_handlers(msg=message, state=state)
     assert await state.get_state() == StudentStates.start

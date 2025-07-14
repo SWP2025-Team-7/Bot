@@ -1,1 +1,1 @@
-from .student_states import StudentStates
+from .student_states import States
