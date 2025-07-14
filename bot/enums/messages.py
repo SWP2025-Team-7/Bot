@@ -9,3 +9,5 @@ class Messages(Enum):
     INSTRUCTIONS = "instructions"
     SEND = "send"
     DATA = "data"
+    LOGIN_INSTRUCTIONS = "login_instructions"
+    THANKS = "thanks"
