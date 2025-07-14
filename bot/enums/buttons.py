@@ -6,3 +6,4 @@ class Buttons(Enum):
     RUSSIAN = "russian"
     ENGLISH = "english"
     LOGIN = "login"
+    SEND = "/send"

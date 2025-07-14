@@ -10,6 +10,8 @@ from bot.states import States
 from bot.texts import get_message, get_button_text
 from bot.enums import Languages, Messages
 
+from bot.keyboards import get_main_keyboard
+
 router = Router()
 
 @router.message(Command("start"))
@@ -39,4 +41,5 @@ async def login_handler(msg: Message, state: FSMContext):
                                                                 "duty_to_work": "yes",
                                                                 "duty_status": "working"})
     await msg.answer(text=get_message(message=Messages.LOGIN, language=(await state.get_data()).get("language")))
+                    #  reply_markup=get_main_keyboard(language=(await state.get_data()).get("language")))
     
